@@ -8,7 +8,7 @@ El model pren aquest nom per la seva arquitectura profunda de 19 capes (**16** c
 
 <p align="center">
   <img src="CNN_architectures.png" alt="arquitectures de CNNs">
-</p>
+</p><br>
 
 ***fig 1***: *Taula comparativa d'arquitectures de CNNs extreta del paper 'Very Deep Convolutional Networks for Large-Scale Image Recognition' (https://doi.org/10.48550/arXiv.1409.1556)* <br>
 
