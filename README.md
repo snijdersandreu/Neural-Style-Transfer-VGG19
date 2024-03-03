@@ -4,7 +4,8 @@ VGG19 és un model de xarxa neuronal convolucional (CNN) desenvolupat per l'equi
 
 ## Estructura VGG19
 
-El model és conegut per la seva arquitectura profunda de 19 capes (16 capes convolucionals, 3 capes completament connectades, capes de max-pooling i funció d'activació ReLU). arXiv:1409.1556 [cs.CV] <br>
+El model és conegut per la seva arquitectura profunda de 19 capes (16 capes convolucionals, 3 capes completament connectades, capes de max-pooling i funció d'activació ReLU).<br><br>
 
-![architectures de CNNs](CNN_architectures.png)
+<img src="CNN_architectures.png" alt="Arquitectures de CNNs" width="500"/>
+
 ***Fig 1***: *Taula extreta del paper: Very Deep Convolutional Networks for Large-Scale Image Recognition(https://doi.org/10.48550/arXiv.1409.1556)*
