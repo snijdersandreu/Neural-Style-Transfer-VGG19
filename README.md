@@ -7,6 +7,7 @@
 * [Funció de pèrdues](#4-funció-de-pèrdues)
 * [Interfície d'usuari](#5-interfície-dusuari)
 * [Codi](#6-codi)
+* [Documentació](#7-documentació)
 ___
 
 # Style Transfer amb VGG19
@@ -29,7 +30,7 @@ Podem utilitzar VGG19 per extreure característiques que ens permetin representa
 ___
 ## 3. *Gram Matrix*
 
-En els models de transferència d'estil s'acostuma a utilitzar una operació matricial que té com a resultat una matriu que s'anomena ***Matriu Gram***.<br><br>Per exemple, si partim d'un conjunt de vectors (diguem $F$) i la seva transposada ($F^T$), la *Matriu Gram* de $F$ seria la multiplicació matricial d'aquestes dues:<br><br>$G = F \times F^T$<br><br>Aquesta matriu resultant codifica l'autocorrelació del conjunt de vectors $F$. És a dir, és una representació de la **correlació que existeix entre els diferents vectors** del conjunt. Aixó es degut a que cada valor de $G$ és el producte escalar de dos vectors de $F$:<br><br>$G_{ij} = F_i \cdot F_j$
+En els models de transferència d'estil s'acostuma a utilitzar una operació matricial que té com a resultat una matriu que s'anomena ***Matriu Gram***.<br><br>Per exemple, si partim d'un conjunt de vectors (diguem $F$) i la seva transposada ($F^T$), la *Matriu Gram* de $F$ seria la multiplicació matricial d'aquestes dues:<br><br>$G = F \times F^T$<br><br>Aquesta matriu resultant codifica l'autocorrelació del conjunt de vectors $F$. És a dir, és una representació de la **correlació que existeix entre els diferents vectors** del conjunt. Això és degut a que cada element de $G$ és el producte escalar de dos vectors de $F$:<br><br>$G_{ij} = F_i \cdot F_j$
 
 ### 3.1 Perquè utilitzem la *Gram Matrix*?
 
@@ -45,3 +46,9 @@ ___
 django? o local?
 ___
 ## 6. Codi
+
+___
+## 7. Documentació
+vgg: https://doi.org/10.48550/arXiv.1409.1556
+
+style transfer: https://arxiv.org/abs/1701.01036
