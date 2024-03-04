@@ -16,9 +16,11 @@ El model pren aquest nom per la seva arquitectura profunda de 19 capes (**16** c
 
 Podem utilitzar VGG19 per extreure característiques que representin tant l'estil com el contingut d'una imatge: les **capes inicials** de la xarxa capturen detalls d'estil com **textures i colors**, mentre que les **capes més profundes** codifiquen informació de contingut, com ara **objectes i escenes**.<br><br>La idea és crear una imatge que anomenem ***target*** que sigui una combinació de dues. Podem iniciar la nova imatge com una copia de la imatge contingut. En el procés de transferència d'estil, **minimitzem les diferències** entre les representacions d'estil de la **imatge *target* i la imatge d'estil**, així com entre les representacions de contingut de la **imatge *target* i l'imatge de contingut**. Aixo ho aconseguim ajustant iterativament la imatge *target* mitjançant ***backprop***. D'aquesta manera creem una nova imatge que manté el contingut original però pren l'estil de l'altre imatge.
 ___
-## "Gram Matrix"
+## *Gram Matrix*
 
+En els models de transferència d'estil s'acostuma a utilitzar una operació matricial que té com a resultat una matriu que s'anomena ***Matriu Gram***.<br><br>Per exemple, si partim d'un conjunt de vectors (diguem $F$) i la seva transposada ($F^T$), la *Matriu Gram* de $F$ seria la multiplicació matricial d'aquestes dues:<br><br>$G = FF^T$<br><br>Aquesta matriu resultant codifica l'autocorrelació del conjunt de vectors $F$. És a dir, es una representació de la correlació que existeix entre els diferents vectors del conjunt. Aixó es degut a que cada valor de $G$ és el producte escalar de dos vectors de $F$:<br><br>$G_{ij} = F_i \cdot F_j$
 
+## Perquè utilitzem la *Gram Matrix*?
 ___
 ## Funció de pèrdues
 
