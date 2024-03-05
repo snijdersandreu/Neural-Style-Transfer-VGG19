@@ -5,6 +5,9 @@
 * [*Gram Matrix*](#3-gram-matrix)
   * [Perquè utilitzem la *Gram Matrix*?](#31-perquè-utilitzem-la-gram-matrix)
 * [Funció de pèrdues](#4-funció-de-pèrdues)
+  * [*Loss* de contingut](#41-loss-de-contingut)
+  * [*Loss* d'estil](#42-loss-destil)  
+  * [Respecte quines capes optimitzem?](#43-respecte-quines-capes-optimitzem)
 * [Interfície d'usuari](#5-interfície-dusuari)
 * [Codi](#6-codi)
 * [Documentació](#7-documentació)
@@ -40,14 +43,35 @@ Utilitzem aquesta matriu per obtenir una **representació de l'estil i contingut
 * A partir d'aquesta matriu $F_n$ calculem la corresponent *Matriu Gram*: $G_n = F_n \times F_n^T$
 
 Simplificarem conceptualment el significat dels mapes de característiques per explicar com extraiem un representació de l'estil a partir d'aquests:<br><br> *Podem entendre que cada filtre d'una capa s'encarrega de detectar diferents característiques. Per exemple, un filtre pot estar buscant linies diagonals i un altre pot estar buscant zones de color vermell. Els seus respectius mapes de característiques prendran valors alts en les zones on hi hagi linies diagonals i, per l'altre filtre, valors alts en zones on hi hagi color vermell. En el nostre exemple bàsic podriem buscar, mitjançant una **Matriu Gram**, una correlació entre aquests dos mapes. És a dir, podriem trobar si les zones amb liníes diagonals acostumen a ser de color vermell. Aquesta relació de característiques és el que visualment entenem com estil.*
-<br><br>
-L'anterior exemple redueix molt la complexitat real del funcionament de les CNNs però ens serveix com a métode d'explicació. Els filtres realment no busquen linies o colors, sinó que ***aprenen*, mitjançant *backprop***, filtres que codifiquen la informació de la imatge en una altra dimensionalitat.<br><br>Per resumir, l'autocorrelació ens ajuda a comprendre com les textures, colors i patrons es repeteixen o varien dins de la imatge. Així es com definim l'estil visual.
+<br><br>L'anterior exemple redueix molt la complexitat real del funcionament de les CNNs però ens serveix com a métode d'explicació. Els filtres realment no busquen linies o colors, sinó que ***aprenen*, mitjançant *backprop***, filtres que codifiquen la informació de la imatge en una altra dimensionalitat.<br><br>Per resumir, l'autocorrelació ens ajuda a comprendre com les textures, colors i patrons es repeteixen o varien dins de la imatge. Així es com definim l'estil visual.
 
 ___
 ## 4. Funció de pèrdues
 
-La definició bàsica d'una funció de pérdues és la d'una funció que quantifica "com de *malament* funciona el nostre model". En tasques de classificació, per exemple, una funció de pérdues amb un resultat molt elevat implica que el nostre model no és capaç de distingir entre les diferents classes que ha de classificar.<br><br>Normalment, quan s'entrena una xarxa neural convolucional CNN com VGG19, és realitza *backprop* en els pesos (*weights*) dels filtres per poder realitzar el *gradient descent* que minimitzi el resultat de la funció i, per tant, millori el model.<br><br>En el cas de la transferència d'estil, el *backprop* el realitzem en el input del model, en el nostre cas, la imatge *target*. De manera que el que fem es anar modificant la imatge per que s'ajusti als valors que redueixin la funció de pérdues.<br><br>
+Una funció de pèrdues (***Loss Function***) mesura l'eficàcia d'un model, on resultats alts indiquen baixa precisió. En la classificació incorrecta d'un objecte, per exemple, obtindriem un valor molt alt.<br><br>En el procés d'entrenament de xarxes neurals, com VGG19, s'utilitza el *backprop* per ajustar els pesos (*weights*) i optimitzar la funció de pèrdues, millorant així el model.<br><br> En transferència d'estil, en canvi, el *backprop* s'utilitza per **ajustar l'imatge *target*** modificant-la per optimitzar la funció de pèrdues i aconseguir l'estil desitjat. Amb aquesta aclaració podem pasar a explicar la funció de pèrdues que utilitzem ja que no l'habitual.<br><br>La funció que utilitzem aqui realment esta formada per dues altres. Per mesurar la ***loss*** ($L$) total del nostre model ho fem amb la següent formula:
 
+$L_{total} = W_{content} \times L_{content} \,\, + \,\, W_{style} \times L_{style} $
+
+on $W$ són pesos que ens permeten ajustar en quina mesura volem aplicar l'estil i contingut a la nova imatge.
+
+### 4.1 *Loss* de contingut $L_{content}$
+
+.........
+La pèrdua de contingut mesura quant difereix el contingut de la imatge objectiu del contingut de la imatge de contingut. En el camp de la transferència d'estil, "contingut" es refereix a les característiques d'alt nivell de la imatge, com les formes i l'estructura general que defineixen els elements principals de l'escena.
+
+Com es calcula: La pèrdua de contingut es calcula típicament com l'error quadràtic mitjà (MSE) entre les representacions de característiques de la imatge objectiu i la imatge de contingut. Aquestes representacions de característiques s'extreuen d'una o més capes d'una xarxa neuronal convolucional (CNN) preentrenada, com VGG19 en el teu cas. En el teu codi, la pèrdua de contingut es calcula utilitzant els mapes de característiques de la capa 'conv4_2', coneguda per capturar bé el contingut.
+
+### 4.2 *Loss* d'estil $L_{style}$
+
+........
+La pèrdua d'estil mesura com de diferent és l'estil de la imatge objectiu de l'estil de la imatge d'estil. "Estil" inclou textures, colors i patrons visuals de la imatge però no l'estructura d'alt nivell o el contingut.
+
+Com es calcula: La pèrdua d'estil és més complexa i es calcula utilitzant la matriu Gram dels mapes de característiques de múltiples capes a través de la CNN. La matriu Gram captura les correlacions entre diferents mapes de característiques en una capa, representant efectivament la informació de textura. Per a cadascuna d'aquestes capes, la pèrdua d'estil és l'MSE entre les matrius Gram de la imatge objectiu i la imatge d'estil. La pèrdua d'estil a través de múltiples capes captura una gamma de detalls estilístics, des de textures més fines fins a patrons més abstractes.
+
+### 4.3 Respecte quines capes optimitzem?
+
+........
+En la teva funció calculate_losses, primer calcules la pèrdua d'estil per a cada capa especificada comparant les matrius Gram de la imatge objectiu i de l'estil. La pèrdua d'estil per a cada capa es pondera per style_weights[layer] i es normalitza per la mida dels mapes de característiques per assegurar que la magnitud de la pèrdua d'estil no domini la pèrdua total a causa de diferències en les dimensions de la capa.
 ___
 ## 5. Interfície d'Usuari
 django? o local?
