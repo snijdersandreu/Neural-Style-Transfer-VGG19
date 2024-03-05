@@ -50,7 +50,7 @@ ___
 
 Una funció de pèrdues (***Loss Function***) mesura l'eficàcia d'un model, on resultats alts indiquen baixa precisió. En la classificació incorrecta d'un objecte, per exemple, obtindriem un valor molt alt.<br><br>En el procés d'entrenament de xarxes neurals, com VGG19, s'utilitza el *backprop* per ajustar els pesos (*weights*) i optimitzar la funció de pèrdues, millorant així el model.<br><br> En transferència d'estil, en canvi, el *backprop* s'utilitza per **ajustar l'imatge *target*** modificant-la per optimitzar la funció de pèrdues i aconseguir l'estil desitjat. Amb aquesta aclaració podem pasar a explicar la funció de pèrdues que utilitzem ja que no l'habitual.<br><br>La funció que utilitzem aqui realment esta formada per dues altres. Per mesurar la ***loss*** ($L$) total del nostre model ho fem amb la següent formula:
 
-$L_{total} = W_{content} \times L_{content} \,\, + \,\, W_{style} \times L_{style} $
+$L_{total} = W_{content} \times L_{content} \ + \ W_{style} \times L_{style} $
 
 on $W$ són pesos que ens permeten ajustar en quina mesura volem aplicar l'estil i contingut a la nova imatge.
 
