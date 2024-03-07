@@ -15,7 +15,7 @@ ___
 
 # Neural Style Transfer amb VGG19
 
-Aquest projecte consisteix en utilitzar un model VGG19 per a la transferència d'estil entre imatges. Tot això recollit en un programa amb interfície d'usuari.<br><br>VGG19 és un model de **xarxa neuronal convolucional** (CNN) desenvolupat per l'equip de Visual Geometry Group de la Universitat d'Oxford i es va presentar al concurs **ILSVRC** ( *ImageNet Large Scale Visual Recognition Challenge* ) de 2014. Aquest model es va endur el 2n premi per darrere de GoogLeNet.<br><br>El model ha mostrat molt bons resultats quan s'entrena amb milions d'imatges del dataset **ImageNet**. És molt utilitzat en tasques de visió per computador, com la detecció i classificació d'objectes i la **transferència d'estil**.<br><br>La transferència d'estil és una tècnica que combina l'estil visual d'una imatge amb el contingut d'una altra imatge, creant una imatge resultant que manté el contingut original però amb l'aspecte estètic de la imatge d'estil.
+Aquest projecte consisteix en utilitzar un model VGG19 per a la transferència d'estil entre imatges. A més en aquest projecte intento explicar de manera entenedora conceptes com la ***Matriu Gram*** i el optimitzador ***L-BFGS***.<br><br>VGG19 és un model de **xarxa neuronal convolucional** (CNN) desenvolupat per l'equip de Visual Geometry Group de la Universitat d'Oxford i es va presentar al concurs **ILSVRC** ( *ImageNet Large Scale Visual Recognition Challenge* ) de 2014. Aquest model es va endur el 2n premi per darrere de GoogLeNet.<br><br>El model ha mostrat molt bons resultats quan s'entrena amb milions d'imatges del dataset **ImageNet**. És molt utilitzat en tasques de visió per computador, com la detecció i classificació d'objectes i la **transferència d'estil**.<br><br>La transferència d'estil és una tècnica que combina l'estil visual d'una imatge amb el contingut d'una altra imatge, creant una imatge resultant que manté el contingut original però amb l'aspecte estètic de la imatge d'estil.
 
 ## 1. Estructura de VGG19
 
@@ -43,7 +43,7 @@ Utilitzem aquesta matriu per obtenir una **representació de l'estil i contingut
 * A partir d'aquesta matriu $F_n$ calculem la corresponent *Matriu Gram*: $G_n = F_n \times F_n^T$
 
 Simplificarem conceptualment el significat dels mapes de característiques per explicar com extraiem un representació de l'estil a partir d'aquests:<br><br> *Podem entendre que cada filtre d'una capa s'encarrega de detectar diferents característiques. Per exemple, un filtre pot estar buscant linies diagonals i un altre pot estar buscant zones de color vermell. Els seus respectius mapes de característiques prendran valors alts en les zones on hi hagi linies diagonals i, per l'altre filtre, valors alts en zones on hi hagi color vermell. En el nostre exemple bàsic podriem buscar, mitjançant una **Matriu Gram**, una correlació entre aquests dos mapes. És a dir, podriem trobar si les zones amb liníes diagonals acostumen a ser de color vermell. Aquesta relació de característiques és el que visualment entenem com estil.*
-<br><br>L'anterior exemple redueix molt la complexitat real del funcionament de les CNNs però ens serveix com a métode d'explicació. Els filtres realment no busquen linies o colors, sinó que ***aprenen*, mitjançant *backprop***, filtres que codifiquen la informació de la imatge en una altra dimensionalitat.<br><br>Per resumir, l'autocorrelació ens ajuda a comprendre com les textures, colors i patrons es repeteixen o varien dins de la imatge. Així es com definim l'estil visual.
+<br>L'anterior exemple redueix molt la complexitat real del funcionament de les CNNs però ens serveix com a métode d'explicació. Els filtres realment no busquen linies o colors, sinó que ***aprenen*, mitjançant *backprop***, filtres que codifiquen la informació de la imatge en una altra dimensionalitat.<br><br>Per resumir, la correlació entre mapes de característiques ens ajuda a comprendre com les textures, colors i patrons es repeteixen o varien dins de la imatge. Així es com definim l'estil visual.
 
 ___
 ## 4. Funció de pèrdues
@@ -72,14 +72,9 @@ Com es calcula: La pèrdua d'estil és més complexa i es calcula utilitzant la 
 
 ........
 En la teva funció calculate_losses, primer calcules la pèrdua d'estil per a cada capa especificada comparant les matrius Gram de la imatge objectiu i de l'estil. La pèrdua d'estil per a cada capa es pondera per style_weights[layer] i es normalitza per la mida dels mapes de característiques per assegurar que la magnitud de la pèrdua d'estil no domini la pèrdua total a causa de diferències en les dimensions de la capa.
-___
-## 5. Interfície d'Usuari
-django? o local?
-___
-## 6. Codi
 
 ___
 ## 7. Documentació
-vgg: https://doi.org/10.48550/arXiv.1409.1556
+* VGG -> https://doi.org/10.48550/arXiv.1409.1556
 
-style transfer: https://arxiv.org/abs/1701.01036
+* Style Transfer -> https://arxiv.org/abs/1701.01036
