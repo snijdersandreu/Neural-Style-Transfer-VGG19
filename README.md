@@ -13,7 +13,7 @@
 * [Documentació](#7-documentació)
 ___
 
-# Neural Style Transfer amb VGG19
+# Neural-Style-Transfer-amb-VGG19
 
 Aquest projecte consisteix en utilitzar un model VGG19 per a la transferència d'estil entre imatges. A més, en aquest projecte intento explicar de manera entenedora conceptes com la ***Matriu Gram*** i el optimitzador ***L-BFGS***.<br><br>VGG19 és un model de **xarxa neuronal convolucional** (CNN) desenvolupat per l'equip de Visual Geometry Group de la Universitat d'Oxford i es va presentar al concurs **ILSVRC** ( *ImageNet Large Scale Visual Recognition Challenge* ) de 2014. Aquest model es va endur el 2n premi per darrere de GoogLeNet.<br><br>El model ha mostrat molt bons resultats quan s'entrena amb milions d'imatges del dataset **ImageNet**. És molt utilitzat en tasques de visió per computador, com la detecció i classificació d'objectes i la **transferència d'estil**.<br><br>La transferència d'estil és una tècnica que combina l'estil visual d'una imatge amb el contingut d'una altra imatge, creant una imatge resultant que manté el contingut original però amb l'aspecte estètic de la imatge d'estil.
 
