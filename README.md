@@ -1,5 +1,5 @@
 # Neural-Style-Transfer-amb-VGG19
-Aquest projecte consisteix en utilitzar un model VGG19 per a la transferència d'estil entre imatges. A més, en aquest projecte intento explicar de manera entenedora conceptes com la ***Matriu Gram*** i el optimitzador ***L-BFGS***.
+Aquest projecte consisteix en utilitzar un model VGG19 per a la transferència d'estil entre imatges. A més, en aquest projecte intento explicar de manera entenedora conceptes com la ***Matriu Gram*** i l'optimitzador ***L-BFGS***.
 
 ## Taula de continguts
 * [Introducció](#Introducció)
@@ -11,9 +11,9 @@ Aquest projecte consisteix en utilitzar un model VGG19 per a la transferència d
   * [*Loss* de contingut](#41-loss-de-contingut)
   * [*Loss* d'estil](#42-loss-destil)  
   * [Respecte quines capes optimitzem?](#43-respecte-quines-capes-optimitzem)
-* [Interfície d'usuari](#5-interfície-dusuari)
-* [Codi](#6-codi)
-* [Documentació](#7-documentació)
+* [Optimització](#5-optimització)
+  * [*L_BFGS*](#51-l-bfgs)
+* [Documentació](#6-documentació)
 ___
 
 # Introducció
@@ -75,9 +75,13 @@ Com es calcula: La pèrdua d'estil és més complexa i es calcula utilitzant la 
 
 ........
 En la teva funció calculate_losses, primer calcules la pèrdua d'estil per a cada capa especificada comparant les matrius Gram de la imatge objectiu i de l'estil. La pèrdua d'estil per a cada capa es pondera per style_weights[layer] i es normalitza per la mida dels mapes de característiques per assegurar que la magnitud de la pèrdua d'estil no domini la pèrdua total a causa de diferències en les dimensions de la capa.
+___
+## 5. Optimització
+
+### 5.1 *L-BFGS*
 
 ___
-## 7. Documentació
+## 6. Documentació
 * VGG -> https://doi.org/10.48550/arXiv.1409.1556
 
 * Style Transfer -> https://arxiv.org/abs/1701.01036
