@@ -12,7 +12,7 @@ Aquest projecte consisteix en utilitzar un model VGG19 per a la transferència d
   * [*Loss* d'estil](#42-loss-destil)  
   * [Respecte quines capes optimitzem?](#43-respecte-quines-capes-optimitzem)
 * [Optimització](#5-optimització)
-  * [*L_BFGS*](#51-l-bfgs)
+  * [*L-BFGS*](#51-l-bfgs)
 * [Documentació](#6-documentació)
 ___
 
