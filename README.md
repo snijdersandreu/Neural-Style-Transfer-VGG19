@@ -1,6 +1,8 @@
 # Neural-Style-Transfer-amb-VGG19
 Aquest projecte consisteix en utilitzar un model VGG19 per a la transferència d'estil entre imatges. A més, en aquest projecte intento explicar de manera entenedora conceptes com la ***Matriu Gram*** i l'optimitzador ***L-BFGS***.
 
+El codi del projecte el trobeu al notebook [StyleTransfer](style_transfer.ipynb).
+
 ## Taula de continguts
 * [Introducció](#Introducció)
 * [Estructura de VGG19](#1-estructura-de-vgg19)
