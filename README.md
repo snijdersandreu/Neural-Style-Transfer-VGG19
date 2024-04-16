@@ -143,9 +143,7 @@ Sequential(
 
 ### 4.2 *Loss* de contingut $L_{content}$
 
-La loss de contingut és una mesura de com de diferent és la imatge target respecte a la imatge de contingut original a partir de les característiques bàsiques extretes per la xarxa neuronal. Utilitzem aquesta pèrdua per assegurar que la imatge resultant mantingui l'estructura essencial de la imatge original de contingut mentre adopta l'estil de l'imatge de referència.<br>
-El càlcul d'aquesta pèrdua es realitza a partir de les característiques extretes per una capa específica de la xarxa, generalment una capa profunda que captura informació d'alt nivell sobre la imatge (en aquest cas, 'conv4_2'). Aquesta capa ha demostrat ser eficaç per mantenir la 'informació de contingut' de la imatge, que inclou la distribució general d'objectes i les seves formes.<br>
-Utilitzem el MSE per extreure l'error entre la representació de contingut original i la de la imatge target:
+La loss de contingut és una mesura de com de diferent és la imatge target respecte a la imatge de contingut original a partir de les característiques bàsiques extretes per la xarxa neuronal. Utilitzem aquesta pèrdua per assegurar que la imatge resultant mantingui l'estructura essencial de la imatge original de contingut mentre adopta l'estil de l'imatge de referència.<br><br>El càlcul d'aquesta pèrdua es realitza a partir de les característiques extretes per una capa específica de la xarxa, generalment una capa profunda que captura informació d'alt nivell sobre la imatge (en aquest cas, 'conv4_2'). Aquesta capa ha demostrat ser eficaç per mantenir la 'informació de contingut' de la imatge, que inclou la distribució general d'objectes i les seves formes.<br><br>Utilitzem el MSE per extreure l'error entre la representació de contingut original i la de la imatge target:
 
 ```python
 content_loss = torch.mean((target_features[content_layer] - content_features[content_layer]) ** 2)
